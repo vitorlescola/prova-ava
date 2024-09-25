@@ -12,24 +12,23 @@
   
   <h1 class="text-center">Lista de tarefas</h1>
 	
-  	<table class="table">
+ <table class="table">
   <tbody>
-    <tr th:each="tarefa : ${usuarios}">
-    <td th:text="${tarefa.getId()}">ID</td>
-    <td th:text="${tarefa.getDescriçao()}">Descrição</td>
-    <td th:text="${tarefa.getDataCriaçao()}">Data de Criação</td>
-    <td th:text="${tarefa.getPrazo()}">Prazo</td>
-    <td th:text="${tarefa.getStatus()}">Status</td>
-    <td>
+    <tr th:each="tarefa : ${tarefa}">
+      <th scope="col" th:text="${tarefa.titulo}">Título</th>
+      <th scope="col" th:text="${tarefa.descricao}">Descrição</th>
+      <th scope="col" th:text="${tarefa.dataCriacao}">Data de Criação</th>
+      <th scope="col" th:text="${tarefa.prazo}">Prazo</th>
+      <th scope="col" th:text="${tarefa.status}">Status</th>
+      <th>
         <a th:href="@{/editarTarefa/{id}(id=${tarefa.id})}">
-            <button class="btn btn-primary">Editar</button>
+          <button class="btn btn-primary">Editar</button>
         </a>
         <a th:href="@{/removerTarefa/{id}(id=${tarefa.id})}">
-            <button class="btn btn-danger">Remover</button>
+          <button class="btn btn-danger">Remover</button>
         </a>
-    </td>
-</tr>
-
+      </th>
+    </tr>
   </tbody>
 </table>
 

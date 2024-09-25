@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ava.ava.model.Tarefa;
 import com.ava.ava.repository.TarefaRepository;
@@ -25,9 +26,10 @@ public class TarefaController {
 	}
 	
 	@PostMapping("/salvarTarefa")
-	public String salvarTarefa(@ModelAttribute Tarefa tarefa) {
-		tarefaRepository.save(tarefa);
-		return "redirect:/lista";
+	public String salvarTarefa(@ModelAttribute Tarefa tarefa, @RequestParam String status) {
+	    tarefa.setStatus(Tarefa.StatusTarefa.valueOf(status));
+	    tarefaRepository.save(tarefa);
+	    return "redirect:/lista";
 	}
 	
 	@GetMapping("removerTarefa/{id}")
@@ -47,8 +49,8 @@ public class TarefaController {
 		}
 	}
 	@GetMapping("/lista")
-	public String listarUsuario(Model modelo) {
-		modelo.addAttribute("usuarios", tarefaRepository.findAll());
+	public String listarTarefa(Model modelo) {
+		modelo.addAttribute("tarefa", tarefaRepository.findAll());
 		
 		return "lista";
 	}

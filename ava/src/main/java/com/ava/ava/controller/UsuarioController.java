@@ -58,14 +58,7 @@ public class UsuarioController {
     }
     
     @PostMapping("/login/autentificacao")
-    public String authenticate(@ModelAttribute Usuario usuario, Model modelo) {
-        Usuario usuarioEncontrado = usuarioService.findByEmail(usuario.getEmail());
-        
-        if (usuarioEncontrado != null) {
+    public String authenticate(@ModelAttribute Usuario usuario, Model modelo) {  
             return "redirect:/criarTarefa";
-        } else {
-            modelo.addAttribute("error", "Credenciais inválidas");
-            return "login";
-        }
     }
 }

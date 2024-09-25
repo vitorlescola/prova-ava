@@ -22,23 +22,15 @@ public class Tarefa {
 	private Date dataCriaçao;
 	private Date prazo;
 	@Enumerated(EnumType.STRING)
-    private Status status;
-	
-	public enum Status{
+    @Column(nullable = false)
+    private StatusTarefa status;
+	public enum StatusTarefa {
 	    PENDENTE,
 	    CONCLUIDA
 	}
 	
 	
 	
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 	public void criarTarefa() {
 		
 	}
@@ -54,11 +46,12 @@ public class Tarefa {
 	public Tarefa() {
 	}
 
-	public Tarefa(String titulo, String descriçao, Date dataCriaçao, Date prazo, Enum status) {
+	public Tarefa(String titulo, String descriçao, Date dataCriaçao, Date prazo, StatusTarefa status) {
 		this.titulo = titulo;
 		this.descriçao = descriçao;
 		this.dataCriaçao = dataCriaçao;
 		this.prazo = prazo;
+		this.status=status;
 	}
 
 	public String getTitulo() {
@@ -91,5 +84,13 @@ public class Tarefa {
 
 	public void setPrazo(Date prazo) {
 		this.prazo = prazo;
+	}
+
+	public StatusTarefa getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusTarefa status) {
+		this.status = status;
 	}
 }
